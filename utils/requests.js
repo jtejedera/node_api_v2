@@ -12,8 +12,8 @@ const errorHandler = async (path, error, req) => {
   try {
     if (error.code === 'ERR_HTTP_INVALID_HEADER_VALUE') {
       const loginRequest = await axios.post(`${config.API_URL}login`, {
-        client_id: config.API_CLIENT,
-        client_secret: config.API_PASSWORD,
+        client_id: req.session.client_id,
+        client_secret: req.session.client_secret,
       });
 
       if (loginRequest.data.token) {

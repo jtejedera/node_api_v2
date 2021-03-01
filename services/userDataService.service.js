@@ -2,6 +2,7 @@ import request from '../utils/requests'
 
 const getClients = async (req) => {
   try{
+    console.log(req.session)
     const userList = await request.requestQuery('clients',req.session.token)
     return userList.data
   }

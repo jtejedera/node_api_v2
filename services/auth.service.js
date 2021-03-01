@@ -2,12 +2,14 @@ import config from '../config/config.js';
 import axios from 'axios';
 
 class auth{
-  constructor(){
+  constructor(authData){
+    this.client_id = authData.client_id
+    this.client_secret = authData.client_secret
   };
 
   async login() {
     try {
-      const loginRequest = await axios.post(`${config.API_URL}login`, {'client_id': config.API_CLIENT,'client_secret': config.API_PASSWORD})
+      const loginRequest = await axios.post(`${config.API_URL}login`, {'client_id': this.client_id,'client_secret':this.client_secret})
       return loginRequest.data;
     }
     catch (error){
@@ -17,7 +19,7 @@ class auth{
 
   async renew() {
     try {
-      const loginRequest = await axios.post(`${config.API_URL}login`, {'client_id': config.API_CLIENT,'client_secret': config.API_PASSWORD})
+      const loginRequest = await axios.post(`${config.API_URL}login`, {'client_id': this.client_id,'client_secret': this.client_secret})
       return loginRequest.data;
     }
     catch (error){

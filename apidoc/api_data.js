@@ -25,6 +25,19 @@ define({ "api": [
     },
     "name": "Login",
     "group": "Auth",
+    "parameter": {
+      "fields": {
+        "Parameter": [
+          {
+            "group": "Parameter",
+            "type": "username",
+            "optional": false,
+            "field": "String",
+            "description": "<p>Must be the username of the client.</p>"
+          }
+        ]
+      }
+    },
     "success": {
       "fields": {
         "Success 200": [

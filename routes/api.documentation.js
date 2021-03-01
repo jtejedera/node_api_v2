@@ -8,7 +8,9 @@
  * @apiName Login
  * @apiGroup Auth
  *
- *
+ * @apiParam {username} String Must be the username of the client.
+ * @apiParam {password} String Must be the password of the client.
+ * 
  * @apiSuccess {String} Type Type of the Token.
  * @apiSuccess {String} Token  JWT Token.
  *
