@@ -11,6 +11,7 @@ describe('Login',() =>{
   it('should get token by authentication header', (done) => {
     chai.request(app)
     .post('/api/v1/login')
+    .send({client_id:"dare", client_secret: 's3cr3t'})
     .end( (err, res ) => {
       expect(res.body).to.have.property('token');
       res.body.token?token=res.body.token:null
