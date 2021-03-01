@@ -10,7 +10,7 @@ const requestQuery = async (path, token) => {
 
 const errorHandler = async (path, error, req) => {
   try {
-    if (error.code === 'ERR_HTTP_INVALID_HEADER_VALUE') {
+    if ((error.code != undefined && error.code === 'ERR_HTTP_INVALID_HEADER_VALUE') || (error.response.data.message === 'Authorization token expired')) {
       const loginRequest = await axios.post(`${config.API_URL}login`, {
         client_id: req.session.client_id,
         client_secret: req.session.client_secret,
@@ -20,7 +20,7 @@ const errorHandler = async (path, error, req) => {
         req.session.token = `Bearer ${loginRequest.data.token}`;
         return await requestQuery(path, `Bearer ${loginRequest.data.token}`);
       }
-    } else {
+    } else{
       return error;
     }
   } catch (error) {
